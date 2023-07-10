@@ -24,6 +24,21 @@ axios.get(url)
         console.log(error);
     });
 
+function date(tradeDate) {
+    tradeDate = tradeDate.split('.')
+    //取得民國年
+    let year = parseInt(tradeDate[0]) + 1911
+    //取得月份
+    let month = tradeDate[1]
+    //取得日期
+    let date = tradeDate[2]
+    vidsDate = new Date(year + "/" + month + "/" + date)
+    // 格式化日期 padStart() 方法來確保月份和日期都是兩位數（如果是個位數，則在前面補上零）
+    let formattedDate = `${vidsDate.getFullYear()}/${(vidsDate.getMonth() + 1).toString().padStart(2, '0')}/${vidsDate.getDate().toString().padStart(2, '0')}`
+    // console.log(vidsDate)
+    return formattedDate
+}
+
 // 渲染資料
 function renderData(data) {
     console.log(data);
@@ -32,6 +47,7 @@ function renderData(data) {
         str += `<tr>
         <td>${item.作物名稱}</td>
         <td>${item.市場名稱}</td>
+        <td>${date(item.交易日期)}</td>
         <td>${item.上價}</td>
         <td>${item.中價}</td>
         <td>${item.下價}</td>
@@ -83,7 +99,6 @@ buttonGroup.addEventListener('click', function (e) {
 
 
 // 點擊按鈕搜尋按鈕
-// console.log(crop, search);
 search.addEventListener('click', searchCrop)
 // 點擊enter按鈕
 crop.addEventListener('keyup', function (e) {
@@ -115,37 +130,59 @@ function searchCrop() {
 
 
 
-// 由小到大 arr.sort((a,b)=>a-b);
+// 價錢由小到大 arr.sort((a,b)=>a-b);
 function dataUp(value) {
     filterData.sort((a, b) => {
         return a[value] - b[value]
     })
     renderData(filterData)
 }
-// 由大到小 arr.sort((a,b)=>b-a);
+// 價錢由大到小 arr.sort((a,b)=>b-a);
 function dataDown(value) {
     filterData.sort((a, b) => {
         // console.log(b[value] - a[value])
         return b[value] - a[value]
+    })
+    renderData(filterData)
+}
+
+// 日期排序 遠到近
+function dateUp(value) {
+    filterData.sort((a, b,) => {
+        return Date.parse(a[value]) - Date.parse(b[value])
 
     })
     renderData(filterData)
-
-
 }
+// 日期排序 近到遠
+function dateDown(value) {
+    filterData.sort((a, b,) => {
+        return Date.parse(b[value]) - Date.parse(a[value])
+
+    })
+    renderData(filterData)
+}
+
 
 // 表格排序功能
 jsSort.addEventListener('click', function (e) {
-    console.log(e.target.nodeName)
-    if (e.target.nodeName === 'I') {
+    console.log(e.target.value)
+    if (e.target.nodeName != 'I') {
+        // console.log('你點擊到空的地方')
+        return;
+    }
+    else if (e.target.nodeName === 'I') {
         console.log(e.target.dataset.sort)
         let sort = e.target.dataset.sort
         let price = e.target.dataset.price
+        let date = e.target.dataset.date
         if (sort === 'up') {
             dataUp(price)
+            dateUp(date)
         }
         else if (sort === 'down') {
             dataDown(price)
+            dateDown(date)
         }
     }
     renderData(filterData)
@@ -170,6 +207,9 @@ sortSelect.addEventListener('change', (e) => {
             break
         case '依交易量排序':
             dataDown('交易量')
+            break
+        case '依交易日期排序':
+            dateUp('交易日期')
             break
     }
 })
