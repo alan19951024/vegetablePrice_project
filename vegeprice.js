@@ -221,6 +221,7 @@ function searchCrop() {
     renderData(filterData);
   }
   crop.value = "";
+  buttons.forEach((item) => item.classList.remove("active"));
 }
 
 // 價錢由小到大 arr.sort((a,b)=>a-b);
