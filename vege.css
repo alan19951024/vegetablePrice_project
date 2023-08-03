@@ -5,48 +5,129 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 *,
@@ -136,7 +217,6 @@ body {
   background: #899e39;
   padding: 0.5rem 1rem;
   width: 27.5%;
-  
 }
 .date-input input,
 .crop-input input {
@@ -150,9 +230,8 @@ body {
   background: #899e39;
   padding: 0.5rem 3.375rem;
   border-radius: 10px;
-
 }
-.search:hover{
+.search:hover {
   background-color: #515c25;
 }
 .delete {
@@ -162,26 +241,22 @@ body {
   border: 2px #d81616 solid;
   border-radius: 10px;
 }
-.delete:hover{
+.delete:hover {
   background: #9e1a1a;
 }
 @media (max-width: 767px) {
   .seach-group {
     margin-bottom: 1.5rem;
-    
   }
   .date-input,
   .crop-input {
     width: 100%;
-    
   }
   .search {
     width: 100%;
-
   }
   .delete {
     width: 100%;
-
   }
 }
 .sort-select {
@@ -235,31 +310,82 @@ body {
   position: absolute;
 }
 .fa-caret-up {
-  top: -2px;
+  top: -5px;
   right: -15px;
 }
 .fa-caret-down {
-  top: 9px;
+  top: 6px;
   right: -15px;
 }
-.result{
-  margin: 10px 0 20px 0;
-  font-weight: 700;
-  font-size:20px;
+.fa-caret-up:hover,
+.fa-caret-down:hover {
+  color: rgb(27, 141, 222);
+  cursor: pointer;
 }
 
-.page-btn{
-  display: flex;
-  justify-content:center;
+.result {
+  margin: 10px 0 20px 0;
+  font-weight: 700;
+  font-size: 20px;
 }
-.page-btn span{
-  width:50px;
-  border:1px solid;
-  margin:10px;
+
+.page-btn {
+  display: flex;
+  justify-content: center;
+}
+.page-btn span {
+  width: 50px;
+  border: 1px solid;
+  margin: 10px;
   line-height: 50px;
   text-align: center;
 }
 .page-btn span:hover {
-    background: #444;
-    color: #fff;
+  background: #444;
+  color: #fff;
+}
+
+.fa-caret-up.disable,
+.fa-caret-down.disable {
+  color: rgb(174, 174, 174);
+}
+
+.fa-caret-up.disable:hover,
+.fa-caret-down.disable:hover {
+  pointer-events: none;
+}
+
+.previousPageBtn,
+.nextPageBtn,
+.lastPageBtn,
+.firstPageBtn {
+  height: 30px;
+  width: 40px;
+  background-color: #bef0ff;
+  border: 2px solid #2a2a2a;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.previousPageBtn:disabled,
+.nextPageBtn:disabled,
+.lastPageBtn:disabled,
+.firstPageBtn:disabled {
+  visibility: hidden;
+}
+
+.previousPageBtn:disabled,
+.nextPageBtn:disabled,
+.lastPageBtn:disabled,
+.firstPageBtn:disabled {
+  visibility: hidden;
+}
+
+.previousPageBtn:hover,
+.nextPageBtn:hover,
+.lastPageBtn:hover,
+.firstPageBtn:hover {
+  cursor: pointer;
+  background-color: rgb(59, 147, 230);
+  color: white;
 }
