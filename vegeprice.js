@@ -8,7 +8,7 @@ const showResult = document.querySelector(".show-result");
 const jsSort = document.querySelector(".js-sort-advanced");
 const sortSelect = document.querySelector(".sort-select");
 const deleteBtn = document.querySelector(".delete");
-const caretAll = document.querySelectorAll(".fas");
+const caretAll = document.querySelectorAll("#i");
 const jsSelect = document.querySelector(".sort-select");
 const mobileSelect = document.querySelector(".mobile-select");
 const previousPageBtn = document.querySelector(".previousPageBtn");
@@ -29,10 +29,10 @@ axios
   .then(function (response) {
     // console.log(response)
     data = response.data;
-    console.log(data.length);
+    // console.log(data.length);
     countPage(data);
     pageNum = data.length == 0 ? 0 : 1;
-    console.log(allPageNum);
+    // console.log(allPageNum);
     renderData(data);
   })
   .catch(function (error) {
@@ -42,12 +42,12 @@ axios
 // 頁碼計算
 function countPage(data) {
   // 計算每十筆分類後剩下幾筆
-  console.log(data.length);
+  // console.log(data.length);
   let quotient = data.length % 20;
   console.log(quotient);
   // 總共頁碼
   let remainder = (data.length - quotient) / 20;
-  console.log(remainder);
+  // console.log(remainder);
   allPageNum = quotient == 0 ? remainder : remainder + 1;
 }
 
@@ -59,10 +59,18 @@ function updatePageNum() {
     nextPageBtn.disabled = true;
     lastPageBtn.disabled = true;
   } else if (pageNum == 1) {
-    previousPageBtn.disabled = true;
-    firstPageBtn.disabled = true;
-    lastPageBtn.disabled = false;
-    nextPageBtn.disabled = false;
+    if (filterData.length <= 20) {
+      console.log(filterData.length.length);
+      previousPageBtn.disabled = true;
+      nextPageBtn.disabled = true;
+      lastPageBtn.disabled = true;
+      firstPageBtn.disabled = true;
+    } else {
+      previousPageBtn.disabled = true;
+      firstPageBtn.disabled = true;
+      lastPageBtn.disabled = false;
+      nextPageBtn.disabled = false;
+    }
   } else if (pageNum == allPageNum) {
     previousPageBtn.disabled = false;
     firstPageBtn.disabled = false;
@@ -82,7 +90,7 @@ function updatePageNum() {
 previousPageBtn.addEventListener("click", () => {
   if (pageNum > 1) {
     pageNum--;
-    console.log(pageNum);
+    // console.log(pageNum);
     renderData(filterData);
   }
 });
@@ -205,9 +213,15 @@ function searchCrop() {
   });
 
   if (filterData.length === 0) {
+    Swal.fire({
+      icon: "error",
+      text: `查無${crop.value}作物資訊，請重新查詢`,
+      confirmButtonText: "確認",
+    });
     showList.innerHTML = `<tr><td colspan="7" class="text-center p-3">查無${crop.value}作物資訊，請重新查詢</td></tr>`;
     caretAll.forEach(function (item) {
-      item.classList.add("disable");
+      console.log(item);
+      item.setAttribute("disabled", "disabled");
     });
     jsSelect.setAttribute("disabled", "disabled");
     mobileSelect.setAttribute("disabled", "disabled");
@@ -259,7 +273,7 @@ function dateDown(value) {
 jsSort.addEventListener("click", function (e) {
   console.log(e.target.value);
   if (e.target.nodeName != "I") {
-    // console.log('你點擊到空的地方')
+    console.log("你點擊到空的地方");
     return;
   } else if (e.target.nodeName === "I") {
     console.log(e.target.dataset.sort);
@@ -311,21 +325,7 @@ deleteBtn.addEventListener("click", (e) => {
 
 // 移除排序與下拉選單的diable
 function removeDisable(e) {
-  caretAll.forEach((item) => item.classList.remove("disable"));
+  caretAll.forEach((item) => item.removeAttribute("disabled"));
   jsSelect.removeAttribute("disabled");
   mobileSelect.removeAttribute("disabled");
 }
-
-// $(document).ready(function () {
-//   $(search).click(function () {
-//     $(".js-sort-advanced").hide();
-//     $(".show-result").hide();
-//     $(".sort-content").hide();
-//     // $(sortSelect).hide();
-//   });
-//   $("select").change(function () {
-//     $("#js-select").hide();
-//   });
-// });
-
-//

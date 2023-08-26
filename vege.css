@@ -345,7 +345,7 @@ body {
   color: #fff;
 }
 
-.fa-caret-up.disable,
+/* .fa-caret-up.disable,
 .fa-caret-down.disable {
   color: rgb(174, 174, 174);
 }
@@ -353,7 +353,7 @@ body {
 .fa-caret-up.disable:hover,
 .fa-caret-down.disable:hover {
   pointer-events: none;
-}
+} */
 
 .previousPageBtn,
 .nextPageBtn,
@@ -389,3 +389,15 @@ body {
   background-color: rgb(59, 147, 230);
   color: white;
 }
+#i{
+  padding: 0;
+  border: 0;
+  background: none 
+}
+#i:disabled:hover{
+  color: rgb(174, 174, 174);
+}
+#i:disabled{
+  pointer-events: none;
+}
+

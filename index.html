@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>農產品比價網</title>
-    <link rel="stylesheet" href="/vege.css" />
+    <link rel="stylesheet" href="vege.css" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -98,17 +98,22 @@
                 <div class="inline-flex sort-advanced">
                   交易日期
                   <span>
-                    <i
+                    <button id="i">
+                      <i
                       data-date="交易日期"
                       data-sort="up"
                       class="fas fa-caret-up"
                     ></i>
-
-                    <i
+                    </button>
+                   
+                    <button id="i">
+                      <i
                       data-date="交易日期"
                       data-sort="down"
                       class="fas fa-caret-down"
                     ></i>
+                    </button>
+                    
                   </span>
                 </div>
               </th>
@@ -116,17 +121,22 @@
                 <div class="inline-flex sort-advanced">
                   上價
                   <span>
-                    <i
+                    <button id="i">
+                      <i
                       data-price="上價"
                       data-sort="up"
                       class="fas fa-caret-up"
                     ></i>
-
-                    <i
+                    </button>
+                   
+                    <button id="i">
+                      <i
                       data-price="上價"
                       data-sort="down"
                       class="fas fa-caret-down"
                     ></i>
+                    </button>
+                    
                   </span>
                 </div>
               </th>
@@ -134,17 +144,21 @@
                 <div class="inline-flex sort-advanced">
                   中價
                   <span>
-                    <i
+                    <button id="i">
+                      <i
                       data-price="中價"
                       data-sort="up"
                       class="fas fa-caret-up"
                     ></i>
-
-                    <i
+                    </button>
+                    <button id="i">
+                      <i
                       data-price="中價"
                       data-sort="down"
                       class="fas fa-caret-down"
                     ></i>
+                    </button>
+                    
                   </span>
                 </div>
               </th>
@@ -152,17 +166,22 @@
                 <div class="inline-flex sort-advanced">
                   下價
                   <span>
-                    <i
+                    <button id="i">
+                      <i
                       data-price="下價"
                       data-sort="up"
                       class="fas fa-caret-up"
                     ></i>
 
-                    <i
+                    </button>
+                    <button id="i">
+                      <i
                       data-price="下價"
                       data-sort="down"
                       class="fas fa-caret-down"
                     ></i>
+                    </button>
+                    
                   </span>
                 </div>
               </th>
@@ -170,17 +189,22 @@
                 <div class="inline-flex sort-advanced">
                   平均價
                   <span>
-                    <i
+                    <button id="i">
+                      <i
                       data-price="平均價"
                       data-sort="up"
                       class="fas fa-caret-up"
                     ></i>
 
+                    </button>
+                   <button id="i">
                     <i
                       data-price="平均價"
                       data-sort="down"
                       class="fas fa-caret-down"
                     ></i>
+                   </button>
+
                   </span>
                 </div>
               </th>
@@ -188,17 +212,22 @@
                 <div class="inline-flex sort-advanced">
                   交易量
                   <span>
-                    <i
+                    <button id="i">
+                      <i
                       data-price="交易量"
                       data-sort="up"
                       class="fas fa-caret-up"
                     ></i>
 
+                    </button>
+                   <button id="i">
                     <i
-                      data-price="交易量"
-                      data-sort="down"
-                      class="fas fa-caret-down"
-                    ></i>
+                    data-price="交易量"
+                    data-sort="down"
+                    class="fas fa-caret-down"
+                  ></i>
+                   </button>
+                    
                   </span>
                 </div>
               </th>
@@ -246,7 +275,7 @@
         <option>交易量</option>
       </select>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./vegeprice.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
